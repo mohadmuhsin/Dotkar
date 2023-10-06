@@ -1,7 +1,5 @@
 const admin = require('../models/adminData')
 const user = require('../models/user/userData')
-const express = require('express')
-const bcrypt = require('bcrypt')
 const orderData = require('../models/user/orderData')
 const userData = require('../models/user/userData')
 const { date } = require('joi')
@@ -157,12 +155,12 @@ const loadDashboard = async (req, res) => {
             salesCount: sales,
             userCount: customers,
             revenueOfTheWeek: weeklyRevenue,
-            upi: online, cash: cod,wallet:wallet,
+            upi: online, cash: cod, wallet: wallet,
             wsales: weeklySales,
             date: date,
             sales: saless,
             categoryName: categoryNames,
-            catogorySaleCount:numbersOnly
+            catogorySaleCount: numbersOnly
         })
 
 
@@ -173,7 +171,7 @@ const loadDashboard = async (req, res) => {
 
     }
 }
-            
+
 
 
 //user active checking
@@ -235,7 +233,7 @@ const salesReport = async (req, res) => {
 
         if (req.body.from.trim() == '' || req.body.to.trim() == '') {
             res.render('sales', { message: 'All feilds are required' })
-        } 
+        }
         else {
             const salesdata = await orderData.find({
                 status: 'Delivered',

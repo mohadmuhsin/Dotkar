@@ -95,7 +95,7 @@ const verifySignup = async (req, res, next) => {
                     channel: 'sms',
                 });
             const categorydata = await categoryData.find({ status: true })
-            res.render('otpPage', { category: categorydata  })
+            res.render('otpPage', { category: categorydata })
 
         } catch (error) {
             next(error)
