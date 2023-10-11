@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const multer = require('multer')
+mongoose.set('strictQuery', false);
 
 // data base connection
 require('dotenv').config();
@@ -15,8 +16,8 @@ const logger = require('morgan')
 app.use(logger('dev'))
 
 const nocach = require("nocache");
+app.use(nocach());
 const $ = require('jquery');
-
 
 //razorpay
 const Razorpay = require('razorpay');
@@ -34,21 +35,16 @@ app.use(session({
   cookie: { maxAge: 50000000000 },
   resave: false
 }));
-app.use(nocach());
+
 app.use(express.json());
 
 //path
 const path = require('path')
 app.use(express.static(path.join(__dirname, 'public')))
 
-
-
-
-
 // for admin routes
 const adminRoute = require('./routes/adminRoute')
 app.use('/admin', adminRoute)
-
 
 //for user Routes
 const userRoute = require('./routes/user/userRoute')
